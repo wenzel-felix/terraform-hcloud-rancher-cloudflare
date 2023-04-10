@@ -8,7 +8,7 @@
 
 ## ✨ Features
 
-- Utilizing the [rke2 cluster module on hcloud](https://github.com/wenzel-felix/terraform-hcloud-rke2) allow a straigforward custom rancher cluster deployment
+- Utilizing the [rke2 cluster module on hcloud](https://github.com/wenzel-felix/terraform-hcloud-rke2) allows a straigforward custom rancher cluster deployment
 - cert-manager integration for custom domain usage
 - installing hetzner related kubernetes addons on the provisioned rancher clusters
 
