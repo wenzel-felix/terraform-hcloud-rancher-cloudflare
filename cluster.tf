@@ -1,6 +1,6 @@
 module "rke2" {
   source                      = "wenzel-felix/rke2/hcloud"
-  version                     = "0.1.0"
+  version                     = "0.1.1"
   hetzner_token               = var.hetzner_token
   master_node_count           = 3
   worker_node_count           = 1
