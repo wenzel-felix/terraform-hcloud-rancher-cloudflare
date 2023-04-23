@@ -15,7 +15,3 @@ output "rancher_admin_username" {
 output "rancher_admin_password" {
   value = nonsensitive(module.rancher.rancher_admin_password)
 }
-
-output "test" {
-  value = module.rancher.test
-}

@@ -46,10 +46,6 @@ locals {
   required_node_pools     = merge([for name, cluster in var.cluster_configurations : { for node_pool in cluster.node_pools : "${name}--${index(cluster.node_pools, node_pool)}" => node_pool }]...)
 }
 
-output "test" {
-  value = local.required_node_pools
-}
-
 resource "rancher2_node_template" "hetzner" {
   for_each  = local.required_node_templates
   name      = each.key
@@ -100,6 +96,7 @@ metadata:
         }
       }
     }
+    kubernetes_version = "v1.24.10-rancher2-1"
     enable_cri_dockerd = true
     network {
       plugin = "canal"
