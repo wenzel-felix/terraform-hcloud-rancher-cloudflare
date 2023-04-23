@@ -21,8 +21,6 @@ resource "helm_release" "cert_manager" {
 
   wait             = true
   create_namespace = true
-  force_update     = true
-  replace          = true
 
   set {
     name  = "installCRDs"
@@ -45,8 +43,6 @@ resource "helm_release" "rancher" {
 
   wait             = true
   create_namespace = true
-  force_update     = true
-  replace          = true
 
   set {
     name  = "hostname"

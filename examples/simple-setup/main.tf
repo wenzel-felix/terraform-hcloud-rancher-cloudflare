@@ -15,3 +15,8 @@ output "rancher_admin_username" {
 output "rancher_admin_password" {
   value = nonsensitive(module.rancher.rancher_admin_password)
 }
+
+resource "local_file" "management_kube_config" {
+  content  = module.rancher.management_kube_config
+  filename = "kubeconfig"
+}
