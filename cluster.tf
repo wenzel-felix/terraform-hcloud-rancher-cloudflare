@@ -1,6 +1,6 @@
 module "rke2" {
   source                               = "wenzel-felix/rke2/hcloud"
-  version                              = "0.3.0"
+  version                              = "0.3.1"
   hetzner_token                        = var.hetzner_token
   use_cluster_managed_tls_certificates = false
   master_node_count                    = 3
