@@ -1,6 +1,6 @@
 provider "rancher2" {
   alias     = "bootstrap"
-  api_url   = "https://${var.rancher_domain_prefix}.${var.cloudflare_domain}"
+  api_url   = "https://${var.rancher_domain_prefix}.${var.domain}"
   bootstrap = true
 }
 
@@ -22,7 +22,7 @@ resource "rancher2_node_driver" "hetzner_node_driver" {
   builtin           = false
   name              = "hetzner"
   ui_url            = "https://storage.googleapis.com/hcloud-rancher-v2-ui-driver/component.js"
-  url               = "https://github.com/JonasProgrammer/docker-machine-driver-hetzner/releases/download/3.6.0/docker-machine-driver-hetzner_3.6.0_linux_amd64.tar.gz"
+  url               = "https://github.com/JonasProgrammer/docker-machine-driver-hetzner/releases/download/${var.hetzner_node_driver_version}/docker-machine-driver-hetzner_${var.hetzner_node_driver_version}_linux_amd64.tar.gz"
   whitelist_domains = ["storage.googleapis.com"]
 }
 

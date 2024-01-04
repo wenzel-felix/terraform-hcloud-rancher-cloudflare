@@ -8,26 +8,6 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "cert_manager" {
-  depends_on = [
-    cloudflare_record.rancher,
-    module.rke2
-  ]
-  name       = "cert-manager"
-  namespace  = "cert-manager"
-  repository = "https://charts.jetstack.io"
-  chart      = "cert-manager"
-  version    = "1.11.0"
-
-  wait             = true
-  create_namespace = true
-
-  set {
-    name  = "installCRDs"
-    value = true
-  }
-}
-
 resource "random_password" "rancher_init_password" {
   length  = 16
   special = false
@@ -37,7 +17,7 @@ resource "helm_release" "rancher" {
   name       = "rancher"
   namespace  = "cattle-system"
   chart      = "rancher"
-  version    = "2.7.1"
+  version    = var.rancher_version
   repository = "https://releases.rancher.com/server-charts/stable"
   depends_on = [helm_release.cert_manager]
 
@@ -46,7 +26,7 @@ resource "helm_release" "rancher" {
 
   set {
     name  = "hostname"
-    value = "${var.rancher_domain_prefix}.${var.cloudflare_domain}"
+    value = "${var.rancher_domain_prefix}.${var.domain}"
   }
 
   set {
