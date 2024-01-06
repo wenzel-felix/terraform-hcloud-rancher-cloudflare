@@ -63,6 +63,7 @@ variable "cluster_configurations" {
   description = "value for the cluster configurations"
   type = map(object({
     description = string
+    kubernetes_version = string
     node_pools = list(object({
       server_type     = string
       server_location = string
@@ -75,7 +76,8 @@ variable "cluster_configurations" {
   }))
   default = {
     testcluster = {
-      description = "Test Cluster"
+      description        = "Test Cluster"
+      kubernetes_version = "v1.24.13-rancher2-2"
       node_pools = [
         {
           server_type     = "cpx21"
@@ -83,7 +85,7 @@ variable "cluster_configurations" {
           image           = "ubuntu-20.04"
           quantity        = 3
           control_plane   = true
-          etcd            = false
+          etcd            = true
           worker          = false
         },
         {
@@ -92,10 +94,16 @@ variable "cluster_configurations" {
           image           = "ubuntu-20.04"
           quantity        = 1
           control_plane   = false
-          etcd            = true
+          etcd            = false
           worker          = true
         }
       ]
     }
   }
+}
+
+variable "generate_ssh_key_file" {
+  type        = bool
+  default     = false
+  description = "Defines whether the generated ssh key should be stored as local file."
 }

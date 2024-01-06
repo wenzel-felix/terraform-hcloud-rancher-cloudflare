@@ -96,7 +96,7 @@ metadata:
         }
       }
     }
-    kubernetes_version = "v1.24.13-rancher2-2"
+    kubernetes_version = each.value.kubernetes_version
     enable_cri_dockerd = true
     network {
       plugin = "canal"

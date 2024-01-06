@@ -14,12 +14,12 @@ resource "random_password" "rancher_init_password" {
 }
 
 resource "helm_release" "rancher" {
+  depends_on = [ module.rke2 ]
   name       = "rancher"
   namespace  = "cattle-system"
   chart      = "rancher"
   version    = var.rancher_version
   repository = "https://releases.rancher.com/server-charts/stable"
-  depends_on = [helm_release.cert_manager]
 
   wait             = true
   create_namespace = true
