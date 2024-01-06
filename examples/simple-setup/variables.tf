@@ -22,3 +22,9 @@ variable "letsencrypt_issuer" {
   type = string
   description = "value for the letsencrypt issuer"
 }
+
+variable "generate_ssh_key_file" {
+  type        = bool
+  default     = true
+  description = "Defines whether the generated ssh key should be stored as local file."
+}
